@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@300..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-Sansita: "Sansita Swashed", system-ui;
+}
+
+body {
+    background-color: #12372A;
+}
+

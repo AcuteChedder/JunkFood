@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
 
 </script>
 
@@ -8,10 +10,10 @@
             <img src="../assets/BurgerLogo.png" alt="" class="w-50">
         </div>
         <div class=" flex justify-center gap-16">
-            <p class=" text-2xl font-Sansita text-white">Home</p>
-            <p class=" text-2xl font-Sansita text-white">Menu</p>
-            <p class=" text-2xl font-Sansita text-white">About</p>
-            <p class=" text-2xl font-Sansita text-white">Shop</p>
+            <RouterLink to="/" class=" text-2xl font-Sansita text-white">Home</RouterLink>
+            <RouterLink to="/menu" class=" text-2xl font-Sansita text-white">Menu</RouterLink>
+            <RouterLink class=" text-2xl font-Sansita text-white">About</RouterLink>
+            <RouterLink class=" text-2xl font-Sansita text-white">Shop</RouterLink>
         </div>
     </header>
 </template>

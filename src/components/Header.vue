@@ -12,7 +12,7 @@ import { RouterLink } from 'vue-router';
         <div class=" flex justify-center gap-16">
             <RouterLink to="/" class=" text-2xl font-Sansita text-white">Home</RouterLink>
             <RouterLink to="/menu" class=" text-2xl font-Sansita text-white">Menu</RouterLink>
-            <RouterLink class=" text-2xl font-Sansita text-white">About</RouterLink>
+            <RouterLink to="/about" class=" text-2xl font-Sansita text-white">franchise</RouterLink>
             <RouterLink class=" text-2xl font-Sansita text-white">Shop</RouterLink>
         </div>
     </header>

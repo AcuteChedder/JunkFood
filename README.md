@@ -1,29 +1,20 @@
-# burger
+# Burger
 
-This template should help get you started developing with Vue 3 in Vite.
+FullStack Vue-project. It is very easy to understand, all popular technologies are involved, for example pinia and TailwindCSS
 
-## Recommended IDE Setup
+## 🚀To launch my project, you will need:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+1) Clone the repository to your VSCode using the git clone -m command
+2) Next, create a "Burger" database in your MongoDB, which will contain information about franchise owners from "application" and active orders from "Orders"
+3) Next, launch the frontend part of the project (npm i => npm run dev)
+4) Then remove the "type module" in the json package, open the second console and enter npm start.
+5) You're welcome!
 
-## Customize configuration
+## ✨Project stack:
+1) Vue.js
+2) Node.js (express)
+3) TailwindCSS
+4) Pinia
+5) MongoDB
 
-See [Vite Configuration Reference](https://vite.dev/config/).
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```

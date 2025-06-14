@@ -13,7 +13,7 @@ import { RouterLink } from 'vue-router';
             <RouterLink to="/" class=" text-2xl font-Sansita text-white">Home</RouterLink>
             <RouterLink to="/menu" class=" text-2xl font-Sansita text-white">Menu</RouterLink>
             <RouterLink to="/about" class=" text-2xl font-Sansita text-white">franchise</RouterLink>
-            <RouterLink class=" text-2xl font-Sansita text-white">Shop</RouterLink>
+            <RouterLink to="/shop" class=" text-2xl font-Sansita text-white">Shop</RouterLink>
         </div>
     </header>
 </template>

@@ -15,5 +15,9 @@ import { RouterLink } from 'vue-router';
             <RouterLink to="/about" class=" text-2xl font-Sansita text-white">franchise</RouterLink>
             <RouterLink to="/shop" class=" text-2xl font-Sansita text-white">Shop</RouterLink>
         </div>
+        <div class="flex justify-end gap-4">
+            <RouterLink to="/login" class=" py-3 px-10 text-2xl border-[#094E36] border-3 rounded-xl font-Sansita">Login</RouterLink>
+            <RouterLink to="/register" class=" py-3 px-10 text-2xl bg-[#094E36] rounded-xl font-Sansita">Register</RouterLink>
+        </div>
     </header>
 </template>

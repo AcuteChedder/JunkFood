@@ -1,5 +1,8 @@
 <script setup>
 import { RouterLink } from 'vue-router';
+import { useAuthStore } from '../stores/auth.js'
+
+const authStore = useAuthStore()
 
 
 </script>
@@ -15,7 +18,11 @@ import { RouterLink } from 'vue-router';
             <RouterLink to="/about" class=" text-2xl font-Sansita text-white">franchise</RouterLink>
             <RouterLink to="/shop" class=" text-2xl font-Sansita text-white">Shop</RouterLink>
         </div>
-        <div class="flex justify-end gap-4">
+        <div v-if="authStore.nickname" class="flex justify-end gap-4">
+            <span class=" text-2xl font-Sansita font-bold">{{ authStore.nickname }}</span>
+            <button @click="authStore.logout" class="py-2 px-6 bg-[#094E36] text-white rounded-xl font-Sansita">Logout</button>
+        </div>
+        <div class="flex justify-end gap-4" v-else>
             <RouterLink to="/login" class=" py-3 px-10 text-2xl border-[#094E36] border-3 rounded-xl font-Sansita">Login</RouterLink>
             <RouterLink to="/register" class=" py-3 px-10 text-2xl bg-[#094E36] rounded-xl font-Sansita">Register</RouterLink>
         </div>

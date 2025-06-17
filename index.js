@@ -21,12 +21,13 @@ const UserSchema = new mongoose.Schema({
 })
 
 const OrderSchema = new mongoose.Schema({
+    nickname: String,
     items: [
         {
             title: String,
             image: String
         }
-    ]
+    ],
 })
 
 OrderSchema.pre('save', async function(next) {
@@ -61,8 +62,8 @@ app.post('/application', async (req, res) => {
 
 app.post('/orders', async (req,res) => {
     try {
-        const {items} = req.body
-        const newOrder = new Order({items})
+        const {items, nickname} = req.body
+        const newOrder = new Order({items, nickname})
         await newOrder.save()
     } catch (error) {
         res.status(500).json({err: error.message})
@@ -89,7 +90,7 @@ app.post('/login', async (req,res) => {
         res.status(401).json({error: 'invalid compare'})
     }
 
-    res.json({message: 'login successful'})
+    res.json({message: 'login successful', nickname: user.nickname})
 })
 
 app.listen(port, function() {

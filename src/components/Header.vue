@@ -5,6 +5,7 @@ import { useAuthStore } from '../stores/auth.js'
 const authStore = useAuthStore()
 
 
+
 </script>
 
 <template>
@@ -17,6 +18,7 @@ const authStore = useAuthStore()
             <RouterLink to="/menu" class=" text-2xl font-Sansita text-white">Menu</RouterLink>
             <RouterLink to="/about" class=" text-2xl font-Sansita text-white">franchise</RouterLink>
             <RouterLink to="/shop" class=" text-2xl font-Sansita text-white">Shop</RouterLink>
+            <RouterLink v-if="authStore.nickname === 'BorisAdmin'" to="/admin" class=" text-2xl font-Sansita text-white">Adm_Mode</RouterLink>
         </div>
         <div v-if="authStore.nickname" class="flex justify-end gap-4">
             <span class=" text-2xl font-Sansita font-bold">{{ authStore.nickname }}</span>

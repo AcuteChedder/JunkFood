@@ -70,6 +70,15 @@ app.post('/orders', async (req,res) => {
     }
 })
 
+app.get('/orders', async (req,res) => {
+    try {
+        const orders = await Order.find()
+        res.json(orders)
+    } catch (error) {
+        res.status(500).json({err: error.message})
+    }
+})
+
 app.post('/register', async (req,res) => {
     try {
         const {nickname, password} = req.body

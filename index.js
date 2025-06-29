@@ -1,12 +1,20 @@
+require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const port = 3000;
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const SECRET = process.env.JWT_SECRET
+const cookieParser = require('cookie-parser')
 
 const app = express();
+app.use(cookieParser())
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 
 mongoose.connect('mongodb://127.0.0.1:27017/Burgur').then(() => console.log('mongo conncted')).catch((err) => console.log('connection failed', err))
 
@@ -91,15 +99,52 @@ app.post('/register', async (req,res) => {
 })
 
 app.post('/login', async (req,res) => {
-    const {nickname, password} = req.body
-    const user = await newLogin.findOne({nickname})
-    const isPasswordValid = await bcrypt.compare(password, user.password)
+    try {
+        const {nickname, password} = req.body
+        const user = await newLogin.findOne({nickname})
+        const isPasswordValid = await bcrypt.compare(password, user.password)
 
-    if(!user || !isPasswordValid) {
-        res.status(401).json({error: 'invalid compare'})
+        if(!user || !isPasswordValid) {
+            return res.status(401).json({error: 'invalid compare'})
+        }
+
+        const token = jwt.sign({ nickname: user.nickname }, SECRET, { expiresIn: '2h' })
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'strict',
+            maxAge: 7200000
+        })
+
+        res.json({message: 'user login successfully'})
+    } catch (error) {
+        console.error(error.message)
     }
+    
+})
 
-    res.json({message: 'login successful', nickname: user.nickname})
+app.get('/me', (req, res) => {
+    const token = req.cookies.token
+    if (!token) {
+        return res.status(401).json({error: 'Not authenticated'})
+    }
+    
+    try {
+        const decoded = jwt.verify(token, SECRET)
+        res.json({nickname: decoded.nickname})
+    } catch (error) {
+        res.status(403).json({error: 'invalid token'})
+    }
+})
+
+app.post('/logout', (req,res) => {
+    res.clearCookie('token', {
+        httpOnly: true,
+        sameSite: 'strict',
+        secure: false,
+    })
+    res.status(200).json({ message: 'logged out' })
 })
 
 app.listen(port, function() {

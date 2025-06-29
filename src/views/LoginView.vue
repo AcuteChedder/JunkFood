@@ -12,11 +12,7 @@ const password = ref('')
 
 const makeLogin = async () => {
     try {
-        const response = await axios.post('/login', {
-            nickname: nickname.value,
-            password: password.value
-        })
-        authStore.login(response.data.nickname)
+        await authStore.login(nickname.value, password.value)
         router.push('/')
     } catch (error) {
         alert('login error', error.response?.data?.error)

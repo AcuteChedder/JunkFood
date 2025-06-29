@@ -1,10 +1,15 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { useAuthStore } from '../stores/auth.js'
+import { onMounted } from 'vue';
 
 const authStore = useAuthStore()
 
-
+onMounted(() => {
+    authStore.fetchMe().catch(() => {
+        
+    })
+})
 
 </script>
 
